@@ -13,7 +13,7 @@ module.exports = {
     plugins: [
         new HTMLWebpackPlugin({
             template: './src/index.html'
-        })
+        }),
     ],
 
     module: {
@@ -27,6 +27,14 @@ module.exports = {
                         presets: ['@babel/preset-env', '@babel/preset-react']
                     }
                 }
+            },
+            {
+                test: /\.(scss|css)$/i,
+                use: ["style-loader", "css-loader"],
+            },
+            {
+                test: /\.(woff(2)?|eot|ttf|otf)$/i,
+                type: 'asset/resource',
             },
         ]
     }
