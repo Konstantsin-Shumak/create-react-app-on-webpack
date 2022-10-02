@@ -4,7 +4,7 @@ body {
   background-color: $background-color-body;
   font-family: "Nekst";
   font-style: normal;
-  max-width: $point_1;
+  max-width: $breakpoint_1;
   height: 100vh;
   margin: 0 auto;
 }
@@ -21,10 +21,37 @@ body {
   }
   .wrapper__input-blocks {
     display: flex;
-    flex-direction: row;
   }
   .wrapper__output-blocks {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
+
+@media screen and (max-width: $breakpoint_1) {
+  .wrapper {
+    padding-top: 6.7rem;
+    padding-bottom: 120px;
+    .wrapper__title {
+      margin-bottom: 2.4rem;
+    }
+  }
+  .wrapper__input-blocks {
+    flex-direction: column;
+  }
+  .wrapper__output-blocks {
+    margin-top: 2.4rem;
+  }
+}
+
+/*@media (max-width: 1023px) {
+  .wrapper__input-blocks {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 767px) {
+  .wrapper__input-blocks {
+    flex-direction: column;
+  }
+}*/

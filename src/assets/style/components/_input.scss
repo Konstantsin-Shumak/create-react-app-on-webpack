@@ -19,49 +19,69 @@
     background-color: $background-color-input;
     border-radius: $input-border-radius;
     padding: 1.2rem 0.5rem 0.7rem 1.5rem;
+    transition: $animation;
     .input-content__input {
       position: relative;
       display: flex;
       justify-content: space-between;
-      input {
+      .input-number {
         width: 80%;
         font-family: "Nekst";
         font-size: 30px;
         line-height: 36px;
         color: $color-input-passive;
         background-color: $background-color-input;
+        transition: $animation;
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
           -webkit-appearance: none;
         }
       }
       span {
+        position: absolute;
+        padding: 0.6rem 1rem 0.4rem 1.2rem;
         font-size: 30px;
         line-height: 36px;
         color: $color-input-passive;
+        top: -0.7rem;
+        right: 0;
+        right: 0;
+        cursor: pointer;
+      }
+      span:hover {
+        background: $background-input-span;
+        border-radius: $input-border-radius;
       }
       .input__span-rub {
         padding-right: 1rem;
       }
       .input__span-percent {
-        position: absolute;
         font-size: 20px;
-        padding: 0.6rem 1rem 0.4rem 1.2rem;
-        top: -0.7rem;
-        right: 0;
-        right: 0;
-        background: $background-input-span;
-        border-radius: $input-border-radius;
       }
       .input__span-month {
         padding-right: 1rem;
       }
     }
-    input[type="range"] {
+    &:focus-within.input-block__input-content {
+      background-color: $color-input-active;
+      box-shadow: 0 0 0 2px $color-input-border-active;
+      .input-number {
+        background-color: $color-input-active;
+      }
+    }
+    &.--disable {
+      opacity: 0.4;
+      span:hover {
+        cursor: default;
+        background-color: transparent;
+      }
+    }
+    .input-range {
       position: absolute;
       left: 24px;
       right: 24px;
       bottom: 0;
+      cursor: pointer;
 
       -webkit-appearance: none;
       height: 1px;
@@ -75,11 +95,28 @@
         height: 20px;
         border-radius: 50%;
         background: $color-input-range;
+        transition: $animation;
         transform: translateY(-8px);
       }
       &::-webkit-slider-runnable-track {
         height: 2px;
       }
     }
+    .input-range:hover::-webkit-slider-thumb {
+      width: 24px;
+      height: 24px;
+      transform: translateY(-10px);
+    }
+  }
+}
+
+@media (max-width: $breakpoint_1) {
+  .input-block {
+    width: 100%;
+    &:not(:first-child) {
+      margin-left: 0;
+      margin-top: 2rem;
+    }
+    margin-bottom: 0.5rem;
   }
 }

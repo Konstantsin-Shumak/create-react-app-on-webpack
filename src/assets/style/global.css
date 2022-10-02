@@ -48,7 +48,7 @@ body {
   background-color: #e5e5e5;
   font-family: "Nekst";
   font-style: normal;
-  max-width: 1440px;
+  max-width: 1439px;
   height: 100vh;
   margin: 0 auto;
 }
@@ -76,22 +76,46 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
 }
 
 .wrapper .wrapper__output-blocks {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
+@media screen and (max-width: 1439px) {
+  .wrapper {
+    padding-top: 6.7rem;
+    padding-bottom: 120px;
+  }
+  .wrapper .wrapper__title {
+    margin-bottom: 2.4rem;
+  }
+  .wrapper__input-blocks {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .wrapper__output-blocks {
+    margin-top: 2.4rem;
+  }
+}
+
+/*@media (max-width: 1023px) {
+  .wrapper__input-blocks {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 767px) {
+  .wrapper__input-blocks {
+    flex-direction: column;
+  }
+}*/
 /* COLORS */
 .input-block {
   width: 33%;
@@ -116,6 +140,8 @@ body {
   background-color: #f3f3f3;
   border-radius: 16px;
   padding: 1.2rem 0.5rem 0.7rem 1.5rem;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .input-block .input-block__input-content .input-content__input {
@@ -128,23 +154,36 @@ body {
           justify-content: space-between;
 }
 
-.input-block .input-block__input-content .input-content__input input {
+.input-block .input-block__input-content .input-content__input .input-number {
   width: 80%;
   font-family: "Nekst";
   font-size: 30px;
   line-height: 36px;
   color: #575757;
   background-color: #f3f3f3;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
 }
 
-.input-block .input-block__input-content .input-content__input input::-webkit-outer-spin-button, .input-block .input-block__input-content .input-content__input input::-webkit-inner-spin-button {
+.input-block .input-block__input-content .input-content__input .input-number::-webkit-outer-spin-button, .input-block .input-block__input-content .input-content__input .input-number::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
 .input-block .input-block__input-content .input-content__input span {
+  position: absolute;
+  padding: 0.6rem 1rem 0.4rem 1.2rem;
   font-size: 30px;
   line-height: 36px;
   color: #575757;
+  top: -0.7rem;
+  right: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.input-block .input-block__input-content .input-content__input span:hover {
+  background: #ebebec;
+  border-radius: 16px;
 }
 
 .input-block .input-block__input-content .input-content__input .input__span-rub {
@@ -152,31 +191,44 @@ body {
 }
 
 .input-block .input-block__input-content .input-content__input .input__span-percent {
-  position: absolute;
   font-size: 20px;
-  padding: 0.6rem 1rem 0.4rem 1.2rem;
-  top: -0.7rem;
-  right: 0;
-  right: 0;
-  background: #ebebec;
-  border-radius: 16px;
 }
 
 .input-block .input-block__input-content .input-content__input .input__span-month {
   padding-right: 1rem;
 }
 
-.input-block .input-block__input-content input[type="range"] {
+.input-block .input-block__input-content:focus-within.input-block__input-content {
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 0 0 2px #f3f3f3;
+          box-shadow: 0 0 0 2px #f3f3f3;
+}
+
+.input-block .input-block__input-content:focus-within.input-block__input-content .input-number {
+  background-color: #ffffff;
+}
+
+.input-block .input-block__input-content.--disable {
+  opacity: 0.4;
+}
+
+.input-block .input-block__input-content.--disable span:hover {
+  cursor: default;
+  background-color: transparent;
+}
+
+.input-block .input-block__input-content .input-range {
   position: absolute;
   left: 24px;
   right: 24px;
   bottom: 0;
+  cursor: pointer;
   -webkit-appearance: none;
   height: 1px;
   background: #e1e1e1;
 }
 
-.input-block .input-block__input-content input[type="range"]::-webkit-slider-thumb {
+.input-block .input-block__input-content .input-range::-webkit-slider-thumb {
   -webkit-appearance: none;
   z-index: 1000;
   appearance: none;
@@ -184,12 +236,32 @@ body {
   height: 20px;
   border-radius: 50%;
   background: #ff9514;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
   -webkit-transform: translateY(-8px);
           transform: translateY(-8px);
 }
 
-.input-block .input-block__input-content input[type="range"]::-webkit-slider-runnable-track {
+.input-block .input-block__input-content .input-range::-webkit-slider-runnable-track {
   height: 2px;
+}
+
+.input-block .input-block__input-content .input-range:hover::-webkit-slider-thumb {
+  width: 24px;
+  height: 24px;
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+}
+
+@media (max-width: 1439px) {
+  .input-block {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  .input-block:not(:first-child) {
+    margin-left: 0;
+    margin-top: 2rem;
+  }
 }
 
 /* COLORS */
@@ -229,6 +301,20 @@ body {
   margin-left: 0.8rem;
 }
 
+@media screen and (max-width: 1439px) {
+  .output-block {
+    width: 48%;
+  }
+  .output-block:not(:first-child) {
+    margin-left: 0;
+    padding-left: 2rem;
+  }
+  .button-conainer {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+  }
+}
+
 /* COLORS */
 .button {
   display: -webkit-box;
@@ -241,7 +327,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   margin: 0.6rem 0;
-  padding: 0 5.8rem;
+  padding: 1rem 5.6rem;
   margin-left: 1rem;
   background-color: #ff9514;
   background-color: #ff9514;
@@ -251,6 +337,28 @@ body {
   font-size: 30px;
   line-height: 36px;
   color: #ffffff;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
   border-radius: 40px;
+}
+
+.button:hover {
+  background: #111111;
+}
+
+.button:active {
+  background-color: #575757;
+}
+
+.button.--disable {
+  background-color: rgba(255, 149, 20, 0.4);
+}
+
+@media (max-width: 1439px) {
+  .button {
+    margin-top: 2.4rem;
+    margin-left: 0;
+    padding: 1rem 3.2rem;
+  }
 }
 /*# sourceMappingURL=global.css.map */

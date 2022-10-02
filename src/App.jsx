@@ -21,21 +21,34 @@ export const App = () => {
           <p className="input-block__title">Стоимость автомобиля</p>
           <div className="input-block__input-content">
             <div className="input-content__input">
-              <input type="number" />
+              <input className="input-number" type="number" />
               <span className="input__span-rub">₽</span>
             </div>
-            <input type="range" min="0" max="100000" id="rus-range" />
+            <input
+              className="input-range"
+              type="range"
+              min="0"
+              max="100000"
+              id="rus-range"
+            />
           </div>
         </div>
 
         <div className="input-block">
           <p className="input-block__title">Первоначальный взнос</p>
-          <div className="input-block__input-content">
+          <div className="input-block__input-content --disable">
             <div className="input-content__input">
-              <input type="number" />
+              <input className="input-number" type="number" disabled />
               <span className="input__span-percent">13%</span>
             </div>
-            <input type="range" min="0" max="100000" id="percent-range" />
+            <input
+              className="input-range"
+              type="range"
+              min="0"
+              max="100000"
+              id="percent-range"
+              disabled
+            />
           </div>
         </div>
 
@@ -43,10 +56,16 @@ export const App = () => {
           <p className="input-block__title">Срок лизинга</p>
           <div className="input-block__input-content">
             <div className="input-content__input">
-              <input type="number" />
+              <input className="input-number" type="number" />
               <span className="input__span-month">мес.</span>
             </div>
-            <input type="range" min="0" max="100000" id="mounth-range" />
+            <input
+              className="input-range"
+              type="range"
+              min="0"
+              max="100000"
+              id="mounth-range"
+            />
           </div>
         </div>
       </div>
@@ -67,7 +86,9 @@ export const App = () => {
             <span className="result__currency">₽</span>
           </div>
         </div>
-        <button className="button">Оставить заявку</button>
+        <div className="button-conainer">
+          <button className="button">Оставить заявку</button>
+        </div>
       </div>
     </div>
   );
