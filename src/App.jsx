@@ -50,18 +50,19 @@ export const App = () => {
           </div>
         </div>
       </div>
+
       <div className="wrapper__output-blocks">
         <div className="output-block">
-          <p>Сумма договора лизинга</p>
-          <h2>4 467 313 ₽</h2>
+          <p className="output-block__title">Сумма договора лизинга</p>
+          <h2 className="output-block__result">4 467 313 ₽</h2>
         </div>
 
         <div className="output-block">
-          <p>Ежемесячный платех от</p>
-          <h2>114 455 ₽</h2>
+          <p className="output-block__title">Ежемесячный платех от</p>
+          <h2 className="output-block__result">114 455 ₽</h2>
         </div>
 
-        <button>Оставить заявку</button>
+        <button className="button">Оставить заявку</button>
       </div>
     </div>
   );
