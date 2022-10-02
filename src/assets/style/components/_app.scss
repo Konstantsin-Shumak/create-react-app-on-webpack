@@ -4,26 +4,26 @@ body {
   background-color: $background-color-body;
   font-family: "Nekst";
   font-style: normal;
-}
-.wrapper {
   max-width: $point_1;
   height: 100vh;
-  display: flex;
+  margin: 0 auto;
+}
+.wrapper {
   flex-direction: column;
   justify-content: center;
   background-color: $background-color-block;
-  padding: 0 47px;
+  padding: 13.8rem 3rem;
   .wrapper__title {
     font-weight: 900;
     font-size: 54px;
     line-height: 90%;
-    margin-bottom: 32px;
+    margin-bottom: 1.6rem;
   }
   .wrapper__input-blocks {
     display: flex;
     flex-direction: row;
   }
-  .wrapper__output-blocks{
+  .wrapper__output-blocks {
     display: flex;
     flex-direction: row;
   }

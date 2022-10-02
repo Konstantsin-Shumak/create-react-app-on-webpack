@@ -1,29 +1,30 @@
 @import "../base/variables";
 
 .input-block {
-  width: 30%;
+  width: 33%;
+  margin-bottom: 3.3rem;
   &:not(:first-child) {
-    margin-left: 32px;
+    margin-left: 2rem;
   }
-  margin-right: 32px;
-  margin-bottom: 42px;
   .input-block__title {
     font-family: "Gilroy";
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
   }
   .input-block__input-content {
     position: relative;
     background-color: $background-color-input;
     border-radius: $input-border-radius;
-    padding: 7px 7px 7px 24px;
+    padding: 1.2rem 0.5rem 0.7rem 1.5rem;
     .input-content__input {
+      position: relative;
       display: flex;
+      justify-content: space-between;
       input {
-        width: 90%;
+        width: 80%;
         font-family: "Nekst";
         font-size: 30px;
         line-height: 36px;
@@ -37,9 +38,23 @@
       span {
         font-size: 30px;
         line-height: 36px;
-        padding: 17px 15px;
-
         color: $color-input-passive;
+      }
+      .input__span-rub {
+        padding-right: 1rem;
+      }
+      .input__span-percent {
+        position: absolute;
+        font-size: 20px;
+        padding: 0.6rem 1rem 0.4rem 1.2rem;
+        top: -0.7rem;
+        right: 0;
+        right: 0;
+        background: $background-input-span;
+        border-radius: $input-border-radius;
+      }
+      .input__span-month {
+        padding-right: 1rem;
       }
     }
     input[type="range"] {

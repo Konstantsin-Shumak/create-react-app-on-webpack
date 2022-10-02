@@ -22,7 +22,7 @@ export const App = () => {
           <div className="input-block__input-content">
             <div className="input-content__input">
               <input type="number" />
-              <span>₽</span>
+              <span className="input__span-rub">₽</span>
             </div>
             <input type="range" min="0" max="100000" id="rus-range" />
           </div>
@@ -33,7 +33,7 @@ export const App = () => {
           <div className="input-block__input-content">
             <div className="input-content__input">
               <input type="number" />
-              <span>%</span>
+              <span className="input__span-percent">13%</span>
             </div>
             <input type="range" min="0" max="100000" id="percent-range" />
           </div>
@@ -44,7 +44,7 @@ export const App = () => {
           <div className="input-block__input-content">
             <div className="input-content__input">
               <input type="number" />
-              <span>мес.</span>
+              <span className="input__span-month">мес.</span>
             </div>
             <input type="range" min="0" max="100000" id="mounth-range" />
           </div>
@@ -54,14 +54,19 @@ export const App = () => {
       <div className="wrapper__output-blocks">
         <div className="output-block">
           <p className="output-block__title">Сумма договора лизинга</p>
-          <h2 className="output-block__result">4 467 313 ₽</h2>
+          <div className="output-block__result">
+            <h2>4 467 313</h2>
+            <span className="result__currency">₽</span>
+          </div>
         </div>
 
         <div className="output-block">
           <p className="output-block__title">Ежемесячный платех от</p>
-          <h2 className="output-block__result">114 455 ₽</h2>
+          <div className="output-block__result">
+            <h2>114 455</h2>
+            <span className="result__currency">₽</span>
+          </div>
         </div>
-
         <button className="button">Оставить заявку</button>
       </div>
     </div>

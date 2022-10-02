@@ -1,11 +1,10 @@
 @import "../base/variables";
 
 .output-block {
-  width: 30%;
+  width: 33%;
   &:not(:first-child) {
-    margin-left: 32px;
+    margin-left: 0.9rem;
   }
-  margin-right: 32px;
   .output-block__title {
     font-family: "Gilroy";
     font-style: normal;
@@ -13,11 +12,19 @@
     font-size: 16px;
     line-height: 150%;
     color: $color-output-passive;
-    margin-bottom: 8px;
+    margin-bottom: 0.9rem;
   }
   .output-block__result {
-    font-size: 54px;
-    line-height: 90%;
-    color: $color-output-passive;
+    display: flex;
+    h2,
+    span {
+      font-size: 54px;
+      line-height: 90%;
+      color: $color-output-passive;
+    }
+    span {
+      margin-top: -0.3rem;
+      margin-left: 0.8rem;
+    }
   }
 }
