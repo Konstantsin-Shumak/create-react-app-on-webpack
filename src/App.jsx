@@ -17,7 +17,7 @@ export const App = () => {
       (autoPrice - initialFree()) *
       ((interestRate * Math.pow(1 + interestRate, months)) /
         (Math.pow(1 + interestRate, months) - 1)),
-    []
+    [autoPrice, initialFree, months]
   );
 
   const amountLease = useCallback(
