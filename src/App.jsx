@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { ImportBlock } from "./components/InputBlock/index.jsx";
 
 export const App = () => {
   const [autoPrice, setAutoPrice] = React.useState(3300000);
   const [percent, setPercent] = React.useState(13);
-  const [mounth, setMounth] = React.useState(60);
+  const [months, setMonths] = React.useState(60);
+
+  const getPercent = () => percent / 100;
+
+  const initialFree = () => getPercent() * autoPrice;
+
+  const interestRate = 0.035;
+
+  const monthPay = useCallback(
+    () =>
+      (autoPrice - initialFree()) *
+      ((interestRate * Math.pow(1 + interestRate, months)) /
+        (Math.pow(1 + interestRate, months) - 1)),
+    []
+  );
+
+  const amountLease = useCallback(
+    () => initialFree() + months * monthPay(),
+    [initialFree, months, monthPay]
+  );
 
   return (
     <div className="wrapper">
@@ -20,26 +39,24 @@ export const App = () => {
           value={autoPrice}
           rangeMin={1000000}
           rangeMax={6000000}
-          rangeName={"currency"}
           onInputChange={setAutoPrice}
         />
         <ImportBlock
           title={"Первоначальный взнос"}
           inputProperty={"%"}
-          value={percent}
+          percent={percent}
+          value={initialFree().toFixed()}
           rangeMin={10}
           rangeMax={60}
-          rangeName={"percent"}
           onInputChange={setPercent}
         />
         <ImportBlock
           title={"Срок лизинга"}
           inputProperty={"мес."}
-          value={mounth}
+          value={months}
           rangeMin={1}
           rangeMax={60}
-          rangeName={"mounth"}
-          onInputChange={setMounth}
+          onInputChange={setMonths}
         />
       </div>
 
@@ -47,7 +64,7 @@ export const App = () => {
         <div className="output-block">
           <p className="output-block__title">Сумма договора лизинга</p>
           <div className="output-block__result">
-            <h2>4 467 313</h2>
+            <h2>{amountLease().toFixed()}</h2>
             <span className="result__currency">₽</span>
           </div>
         </div>
@@ -55,7 +72,7 @@ export const App = () => {
         <div className="output-block">
           <p className="output-block__title">Ежемесячный платех от</p>
           <div className="output-block__result">
-            <h2>114 455</h2>
+            <h2>{monthPay().toFixed()}</h2>
             <span className="result__currency">₽</span>
           </div>
         </div>

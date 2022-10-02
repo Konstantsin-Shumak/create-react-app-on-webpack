@@ -5,9 +5,9 @@ export const ImportBlock = ({
   title,
   inputProperty,
   value,
+  percent,
   rangeMin,
   rangeMax,
-  rangeName,
   onInputChange,
 }) => {
   const handleInput = React.useCallback((event) => {
@@ -27,8 +27,8 @@ export const ImportBlock = ({
             value={value}
             onChange={handleInput}
           />
-          <span className={`input__span-${rangeName}`}>
-            {inputProperty === "%" && value}
+          <span className={`input__span${percent && "-percent"}`}>
+            {percent && percent}
             {inputProperty}
           </span>
         </div>
@@ -36,16 +36,9 @@ export const ImportBlock = ({
           min={rangeMin}
           max={rangeMax}
           onChange={onInputChange}
-          defaultValue={value}
+          value={percent ? percent : value}
+          defaultValue={percent ? percent : value}
         />
-        {/* <input
-          className="input-range"
-          type="range"
-          min={rangeMin}
-          max={rangeMax}
-          value={value}
-          onChange={handleInput}
-        /> */}
       </div>
     </div>
   );

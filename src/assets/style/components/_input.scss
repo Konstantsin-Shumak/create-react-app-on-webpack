@@ -55,14 +55,12 @@
         background: $background-input-span;
         border-radius: $input-border-radius;
       }
-      .input__span-currency {
+      .input__span,
+      .input__span {
         padding-right: 1rem;
       }
       .input__span-percent {
         font-size: 20px;
-      }
-      .input__span-mounth {
-        padding-right: 1rem;
       }
     }
     &:focus-within.input-block__input-content {

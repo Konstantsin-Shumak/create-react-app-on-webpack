@@ -12,7 +12,7 @@ const RangeInput = ({
   max = 100,
   step = 1,
   defaultValue = 0,
-  onChange = () => {},
+  onChange,
 }) => {
   const inputRef = useRef();
   const [isChanging, setIsChanging] = useState(false);
