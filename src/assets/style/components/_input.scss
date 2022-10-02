@@ -51,16 +51,15 @@
         right: 0;
         cursor: pointer;
       }
-      span:hover {
-        background: $background-input-span;
-        border-radius: $input-border-radius;
-      }
       .input__span,
       .input__span {
         padding-right: 1rem;
       }
       .input__span-percent {
+        width: 4.5rem;
         font-size: 20px;
+        background: $background-input-span;
+        border-radius: $input-border-radius;
       }
     }
     &:focus-within.input-block__input-content {

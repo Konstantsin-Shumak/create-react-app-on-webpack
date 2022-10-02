@@ -87,6 +87,9 @@ body {
 }
 
 @media screen and (max-width: 1439px) {
+  body {
+    max-width: 1023px;
+  }
   .wrapper {
     padding-top: 6.7rem;
     padding-bottom: 120px;
@@ -169,6 +172,10 @@ body {
   -webkit-appearance: none;
 }
 
+.input-block .input-block__input-content .input-content__input .input-number::-ms-fill-lower {
+  background-color: black;
+}
+
 .input-block .input-block__input-content .input-content__input span {
   position: absolute;
   padding: 0.6rem 1rem 0.4rem 1.2rem;
@@ -181,21 +188,16 @@ body {
   cursor: pointer;
 }
 
-.input-block .input-block__input-content .input-content__input span:hover {
-  background: #ebebec;
-  border-radius: 16px;
-}
-
-.input-block .input-block__input-content .input-content__input .input__span-rub {
+.input-block .input-block__input-content .input-content__input .input__span,
+.input-block .input-block__input-content .input-content__input .input__span {
   padding-right: 1rem;
 }
 
 .input-block .input-block__input-content .input-content__input .input__span-percent {
+  width: 4.5rem;
   font-size: 20px;
-}
-
-.input-block .input-block__input-content .input-content__input .input__span-month {
-  padding-right: 1rem;
+  background: #ebebec;
+  border-radius: 16px;
 }
 
 .input-block .input-block__input-content:focus-within.input-block__input-content {
@@ -215,42 +217,6 @@ body {
 .input-block .input-block__input-content.--disable span:hover {
   cursor: default;
   background-color: transparent;
-}
-
-.input-block .input-block__input-content .input-range {
-  position: absolute;
-  left: 24px;
-  right: 24px;
-  bottom: 0;
-  cursor: pointer;
-  -webkit-appearance: none;
-  height: 1px;
-  background: #e1e1e1;
-}
-
-.input-block .input-block__input-content .input-range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  z-index: 1000;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #ff9514;
-  -webkit-transition: 0.3s ease;
-  transition: 0.3s ease;
-  -webkit-transform: translateY(-8px);
-          transform: translateY(-8px);
-}
-
-.input-block .input-block__input-content .input-range::-webkit-slider-runnable-track {
-  height: 2px;
-}
-
-.input-block .input-block__input-content .input-range:hover::-webkit-slider-thumb {
-  width: 24px;
-  height: 24px;
-  -webkit-transform: translateY(-10px);
-          transform: translateY(-10px);
 }
 
 @media (max-width: 1439px) {

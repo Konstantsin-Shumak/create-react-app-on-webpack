@@ -29,6 +29,9 @@ body {
 }
 
 @media screen and (max-width: $breakpoint_1) {
+  body {
+    max-width: $breakpoint_2;
+  }
   .wrapper {
     padding-top: 6.7rem;
     padding-bottom: 120px;
