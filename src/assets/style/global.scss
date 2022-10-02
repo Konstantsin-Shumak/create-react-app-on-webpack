@@ -1,6 +1,5 @@
-h1 {
-  font-family: "Nekst";
-}
-p {
-  font-family: "Gilroy";
-}
+@import "./base/typography";
+@import "./base/reset";
+
+@import "./components/app";
+@import "./components/input";
