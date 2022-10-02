@@ -1,14 +1,11 @@
 import React from "react";
-import WebkitInputRangeFillLower from "../scripts/WebkitInputRangeFillLower";
+import { ImportBlock } from "./components/InputBlock/index.jsx";
 
 export const App = () => {
-  React.useEffect(() => {
-    new WebkitInputRangeFillLower({
-      selectors: ["rus-range", "mounth-range", "percent-range"],
-      angle: 90,
-      color: "#ff9514",
-    });
-  }, []);
+  const [autoPrice, setAutoPrice] = React.useState(3300000);
+  const [percent, setPercent] = React.useState(13);
+  const [mounth, setMounth] = React.useState(60);
+
   return (
     <div className="wrapper">
       <h1 className="wrapper__title">
@@ -17,57 +14,33 @@ export const App = () => {
         автомобиля в лизинг
       </h1>
       <div className="wrapper__input-blocks">
-        <div className="input-block">
-          <p className="input-block__title">Стоимость автомобиля</p>
-          <div className="input-block__input-content">
-            <div className="input-content__input">
-              <input className="input-number" type="number" />
-              <span className="input__span-rub">₽</span>
-            </div>
-            <input
-              className="input-range"
-              type="range"
-              min="0"
-              max="100000"
-              id="rus-range"
-            />
-          </div>
-        </div>
-
-        <div className="input-block">
-          <p className="input-block__title">Первоначальный взнос</p>
-          <div className="input-block__input-content --disable">
-            <div className="input-content__input">
-              <input className="input-number" type="number" disabled />
-              <span className="input__span-percent">13%</span>
-            </div>
-            <input
-              className="input-range"
-              type="range"
-              min="0"
-              max="100000"
-              id="percent-range"
-              disabled
-            />
-          </div>
-        </div>
-
-        <div className="input-block">
-          <p className="input-block__title">Срок лизинга</p>
-          <div className="input-block__input-content">
-            <div className="input-content__input">
-              <input className="input-number" type="number" />
-              <span className="input__span-month">мес.</span>
-            </div>
-            <input
-              className="input-range"
-              type="range"
-              min="0"
-              max="100000"
-              id="mounth-range"
-            />
-          </div>
-        </div>
+        <ImportBlock
+          title={"Стоимость автомобиля"}
+          inputProperty={"₽"}
+          value={autoPrice}
+          rangeMin={1000000}
+          rangeMax={6000000}
+          rangeName={"currency"}
+          onInputChange={setAutoPrice}
+        />
+        <ImportBlock
+          title={"Первоначальный взнос"}
+          inputProperty={"%"}
+          value={percent}
+          rangeMin={10}
+          rangeMax={60}
+          rangeName={"percent"}
+          onInputChange={setPercent}
+        />
+        <ImportBlock
+          title={"Срок лизинга"}
+          inputProperty={"мес."}
+          value={mounth}
+          rangeMin={1}
+          rangeMax={60}
+          rangeName={"mounth"}
+          onInputChange={setMounth}
+        />
       </div>
 
       <div className="wrapper__output-blocks">

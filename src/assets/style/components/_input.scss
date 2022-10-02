@@ -36,6 +36,9 @@
         &::-webkit-inner-spin-button {
           -webkit-appearance: none;
         }
+        &::-ms-fill-lower {
+          background-color: black;
+        }
       }
       span {
         position: absolute;
@@ -52,13 +55,13 @@
         background: $background-input-span;
         border-radius: $input-border-radius;
       }
-      .input__span-rub {
+      .input__span-currency {
         padding-right: 1rem;
       }
       .input__span-percent {
         font-size: 20px;
       }
-      .input__span-month {
+      .input__span-mounth {
         padding-right: 1rem;
       }
     }
@@ -75,37 +78,6 @@
         cursor: default;
         background-color: transparent;
       }
-    }
-    .input-range {
-      position: absolute;
-      left: 24px;
-      right: 24px;
-      bottom: 0;
-      cursor: pointer;
-
-      -webkit-appearance: none;
-      height: 1px;
-      background: $background-color-range;
-
-      &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        z-index: 1000;
-        appearance: none;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: $color-input-range;
-        transition: $animation;
-        transform: translateY(-8px);
-      }
-      &::-webkit-slider-runnable-track {
-        height: 2px;
-      }
-    }
-    .input-range:hover::-webkit-slider-thumb {
-      width: 24px;
-      height: 24px;
-      transform: translateY(-10px);
     }
   }
 }
