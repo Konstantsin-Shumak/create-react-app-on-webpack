@@ -1,5 +1,6 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import RangeInput from "../RangeInput/index.jsx";
+import { formatingNumner } from "../../scripts/formatingNumber.js";
 
 export const ImportBlock = ({
   title,
@@ -10,15 +11,37 @@ export const ImportBlock = ({
   onInputChange,
   isLoading,
 }) => {
-  const handleInput = useCallback((event) => {
-    const valueString = String(event.target.value);
-    const valueNumber = Number(valueString.replace(/\s/g, ""));
-    if (valueNumber < range[0]) onInputChange(range[0]);
-    else if (valueNumber > range[1]) onInputChange(range[1]);
-    else {
-      onInputChange(valueNumber);
-    }
-  }, []);
+  const textInput = useRef(null);
+
+  const handleInputOnCHange = useCallback(
+    (event) => {
+      const value = reFormatingInputValue(event.target.value);
+      onInputChange(value);
+    },
+    [onInputChange]
+  );
+
+  const handleInputValid = useCallback(
+    (event) => {
+      if (event.key === "Enter" || event.type === "blur") {
+        let value = reFormatingInputValue(event.target.value);
+        if (valueNumber > range[1]) {
+          textInput.current.value = formatingNumner(range[1]);
+          valueNumber = range[1];
+        }
+        if (valueNumber < range[0]) {
+          textInput.current.value = formatingNumner(range[0]);
+          valueNumber = range[0];
+        }
+        if (!/^\d+$/.test(valueNumber)) {
+          textInput.current.value = formatingNumner(value);
+          valueNumber = value;
+        }
+        onInputChange(valueNumber);
+      }
+    },
+    [value, onInputChange, reFormatingInputValue, textInput]
+  );
 
   return (
     <div className="input-block">
@@ -28,15 +51,14 @@ export const ImportBlock = ({
       >
         <div className="input-content__input">
           <input
+            ref={textInput}
             className="input-number"
             type="text"
-            value={value.toLocaleString(undefined, {
-              minimumFractionDigits: 0,
-              maximumFractionDigits: 0,
-            })}
+            defaultValue={formatingNumner(value)}
             disabled={isLoading}
             readOnly={percent}
-            onChange={handleInput}
+            onBlur={handleInputValid}
+            onKeyDown={handleInputValid}
           />
           <span className={`input__span${percent && "-percent"}`}>
             {percent && percent}
@@ -46,7 +68,7 @@ export const ImportBlock = ({
         <RangeInput
           min={range[0]}
           max={range[1]}
-          onChange={handleInput}
+          onChange={handleInputOnCHange}
           value={percent ? percent : value}
           isLoading={isLoading}
         />

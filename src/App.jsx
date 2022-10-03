@@ -88,7 +88,7 @@ export const App = () => {
           currency={currency}
         />
         <OutputBlock
-          title={"Ежемесячный платех от"}
+          title={"Ежемесячный платеж от"}
           value={monthPay()}
           currency={currency}
         />
