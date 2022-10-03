@@ -35,9 +35,8 @@ export const ImportBlock = ({
         <RangeInput
           min={rangeMin}
           max={rangeMax}
-          onChange={onInputChange}
+          onChange={handleInput}
           value={percent ? percent : value}
-          defaultValue={percent ? percent : value}
         />
       </div>
     </div>

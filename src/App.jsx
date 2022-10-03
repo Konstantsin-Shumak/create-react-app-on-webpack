@@ -1,16 +1,19 @@
 import React, { useCallback } from "react";
 import { ImportBlock } from "./components/InputBlock/index.jsx";
+import { OutputBlock } from "./components/OutputBlock/index.jsx";
 
 export const App = () => {
+  const interestRate = 0.035;
+  const currency = "₽";
+
   const [autoPrice, setAutoPrice] = React.useState(3300000);
   const [percent, setPercent] = React.useState(13);
   const [months, setMonths] = React.useState(60);
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  const getPercent = () => percent / 100;
+  const getPercent = percent / 100;
 
-  const initialFree = () => getPercent() * autoPrice;
-
-  const interestRate = 0.035;
+  const initialFree = () => getPercent * autoPrice;
 
   const monthPay = useCallback(
     () =>
@@ -32,14 +35,16 @@ export const App = () => {
         <br />
         автомобиля в лизинг
       </h1>
+
       <div className="wrapper__input-blocks">
         <ImportBlock
           title={"Стоимость автомобиля"}
-          inputProperty={"₽"}
+          inputProperty={currency}
           value={autoPrice}
           rangeMin={1000000}
           rangeMax={6000000}
           onInputChange={setAutoPrice}
+          isLoading={isLoading}
         />
         <ImportBlock
           title={"Первоначальный взнос"}
@@ -49,6 +54,7 @@ export const App = () => {
           rangeMin={10}
           rangeMax={60}
           onInputChange={setPercent}
+          isLoading={isLoading}
         />
         <ImportBlock
           title={"Срок лизинга"}
@@ -57,25 +63,21 @@ export const App = () => {
           rangeMin={1}
           rangeMax={60}
           onInputChange={setMonths}
+          isLoading={isLoading}
         />
       </div>
 
       <div className="wrapper__output-blocks">
-        <div className="output-block">
-          <p className="output-block__title">Сумма договора лизинга</p>
-          <div className="output-block__result">
-            <h2>{amountLease().toFixed()}</h2>
-            <span className="result__currency">₽</span>
-          </div>
-        </div>
-
-        <div className="output-block">
-          <p className="output-block__title">Ежемесячный платех от</p>
-          <div className="output-block__result">
-            <h2>{monthPay().toFixed()}</h2>
-            <span className="result__currency">₽</span>
-          </div>
-        </div>
+        <OutputBlock
+          title={"Сумма договора лизинга"}
+          value={amountLease().toFixed()}
+          currency={currency}
+        />
+        <OutputBlock
+          title={"Ежемесячный платех от"}
+          value={monthPay().toFixed()}
+          currency={currency}
+        />
         <div className="button-conainer">
           <button className="button">Оставить заявку</button>
         </div>

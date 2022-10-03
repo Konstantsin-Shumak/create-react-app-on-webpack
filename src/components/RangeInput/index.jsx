@@ -1,75 +1,36 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import "./RangeInput.css";
+import React from "react";
+import Slider from "@mui/material/Slider";
+import { styled } from "@mui/material/styles";
 
-const RangeInput = ({
-  min = 0,
-  max = 100,
-  step = 1,
-  defaultValue = 0,
-  onChange,
-}) => {
-  const inputRef = useRef();
-  const [isChanging, setIsChanging] = useState(false);
+const SimpleRange = styled(Slider)(() => ({
+  position: "absolute",
+  boxSizing: "border-box",
+  width: "auto",
+  left: "24px",
+  right: "24px",
+  color: "#ff9514",
+  height: 2,
+  "& .MuiSlider-thumb": {
+    height: 20,
+    width: 20,
+    backgroundColor: "#ff9514",
+  },
+  "& .MuiSlider-rail": {
+    opacity: 0.5,
+    backgroundColor: "#bfbfbf",
+  },
+  "&:hover .MuiSlider-thumb": {
+    width: 24,
+    height: 24,
+  },
+  ".css-eg0mwd-MuiSlider-thumb:hover, .css-eg0mwd-MuiSlider-thumb.Mui-focusVisible":
+    {
+      boxShadow: "0 0 0 0",
+    },
+}));
 
-  const getPercent = useMemo(
-    () => (value) => ((value - min) / (max - min)) * 100,
-    [max, min]
-  );
-
-  const changeInputProgressPercentStyle = useCallback(() => {
-    inputRef.current.style.setProperty(
-      "--webkitProgressPercent",
-      `${getPercent(inputRef.current.value)}%`
-    );
-  }, [getPercent]);
-
-  useEffect(() => {
-    changeInputProgressPercentStyle();
-    const inputElement = inputRef.current;
-
-    const handleUpAndLeave = () => setIsChanging(false);
-    const handleDown = () => setIsChanging(true);
-
-    inputElement.addEventListener("mousemove", changeInputProgressPercentStyle);
-    inputElement.addEventListener("mousedown", handleDown);
-    inputElement.addEventListener("mouseup", handleUpAndLeave);
-    inputElement.addEventListener("mouseleave", handleUpAndLeave);
-    return () => {
-      inputElement.removeEventListener(
-        "mousemove",
-        changeInputProgressPercentStyle
-      );
-      inputElement.removeEventListener("mousedown", handleDown);
-      inputElement.removeEventListener("mouseup", handleUpAndLeave);
-      inputElement.removeEventListener("mouseleave", handleUpAndLeave);
-    };
-  }, [isChanging, changeInputProgressPercentStyle]);
-
-  useEffect(() => {
-    if (!inputRef?.current) return;
-    changeInputProgressPercentStyle();
-  }, [inputRef, changeInputProgressPercentStyle]);
-
-  return (
-    <div>
-      <input
-        className="range"
-        type="range"
-        ref={inputRef}
-        min={min}
-        max={max}
-        step={step}
-        value={defaultValue}
-        onChange={(e) => onChange(e.currentTarget.value)}
-      />
-    </div>
-  );
+const RangeInput = ({ min, max, value, onChange }) => {
+  return <SimpleRange value={value} max={max} min={min} onChange={onChange} />;
 };
 
 export default RangeInput;
