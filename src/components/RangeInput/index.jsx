@@ -8,6 +8,7 @@ const SimpleRange = styled(Slider)(() => ({
   width: "auto",
   left: "24px",
   right: "24px",
+  bottom: "-20px",
   color: "#ff9514",
   height: 2,
   "& .MuiSlider-thumb": {

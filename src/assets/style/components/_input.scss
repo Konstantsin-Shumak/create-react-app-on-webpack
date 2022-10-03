@@ -89,3 +89,20 @@
     margin-bottom: 0.5rem;
   }
 }
+
+@media screen and (max-width: $breakpoint_3) {
+  .input-block {
+    .input-block__title {
+      margin-bottom: 1rem;
+    }
+    .input-block__input-content {
+      padding: 0.2rem 0.1rem 0.1rem 0.2rem;
+      font-size: 8px;
+      .input-block__input {
+        .input-number {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}

@@ -88,7 +88,7 @@ body {
 
 @media screen and (max-width: 1439px) {
   body {
-    max-width: 1023px;
+    max-width: "1024px";
   }
   .wrapper {
     padding-top: 6.7rem;
@@ -108,17 +108,38 @@ body {
   }
 }
 
-/*@media (max-width: 1023px) {
-  .wrapper__input-blocks {
-    flex-direction: column;
+@media screen and (max-width: 1023px) {
+  body {
+    max-width: "768px";
+  }
+  .wrapper {
+    padding: 4.2rem 2.3rem;
+  }
+  .wrapper .wrapper__title {
+    margin-bottom: 2.6rem;
+  }
+  .wrapper .wrapper__input-blocks {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 
-@media (max-width: 767px) {
-  .wrapper__input-blocks {
-    flex-direction: column;
+@media screen and (max-width: 779px) {
+  body {
+    max-width: "320px";
   }
-}*/
+  .wrapper {
+    padding: 2.8rem 1.2rem;
+  }
+  .wrapper .wrapper__title {
+    font-size: 34px;
+    width: 140px;
+    margin-bottom: 2rem;
+  }
+}
+
 /* COLORS */
 .input-block {
   width: 33%;
@@ -227,6 +248,19 @@ body {
   .input-block:not(:first-child) {
     margin-left: 0;
     margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 779px) {
+  .input-block .input-block__title {
+    margin-bottom: 1rem;
+  }
+  .input-block .input-block__input-content {
+    padding: 0.2rem 0.1rem 0.1rem 0.2rem;
+    font-size: 8px;
+  }
+  .input-block .input-block__input-content .input-block__input .input-number {
+    font-size: 10px;
   }
 }
 
