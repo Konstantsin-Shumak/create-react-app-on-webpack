@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from "react";
 import RangeInput from "../RangeInput/index.jsx";
-import { formatingNumner } from "../../scripts/formatingNumber.js";
+import { formatingNumber } from "../../scripts/formatingNumber.js";
 import { reFormatingInputValue } from "../../scripts/reFormatingInputValue.js";
 
 export const ImportBlock = ({
