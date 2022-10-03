@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import { Button } from "./components/Button/index.jsx";
 import { ImportBlock } from "./components/InputBlock/index.jsx";
 import { OutputBlock } from "./components/OutputBlock/index.jsx";
+import { postDataAsync } from "./scripts/postDataAsync.js";
 
 export const App = () => {
   const interestRate = 0.035;
@@ -33,11 +34,17 @@ export const App = () => {
 
   const sendInfo = () => {
     const data = {
-      test: "tesing",
+      autoPrice: autoPrice,
+      percent: percent,
+      initialFree: initialFree(),
+      months: months,
+      monthPay: monthPay,
+      amountLease: amountLease(),
     };
+
     setIsLoading(true);
-    fetch("https://eoj3r7f3r4ef6v4.m.pipedream.net")
-      .then((response) => response.json())
+
+    postDataAsync(data)
       .catch((err) => {
         console.warn(err);
         alert("Данные не прошли");

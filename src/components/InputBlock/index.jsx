@@ -1,6 +1,7 @@
 import React, { useCallback, useRef } from "react";
 import RangeInput from "../RangeInput/index.jsx";
 import { formatingNumner } from "../../scripts/formatingNumber.js";
+import { reFormatingInputValue } from "../../scripts/reFormatingInputValue.js";
 
 export const ImportBlock = ({
   title,
@@ -24,16 +25,14 @@ export const ImportBlock = ({
   const handleInputValid = useCallback(
     (event) => {
       if (event.key === "Enter" || event.type === "blur") {
-        let value = reFormatingInputValue(event.target.value);
+        let valueNumber = reFormatingInputValue(event.target.value);
         if (valueNumber > range[1]) {
           textInput.current.value = formatingNumner(range[1]);
           valueNumber = range[1];
-        }
-        if (valueNumber < range[0]) {
+        } else if (valueNumber < range[0]) {
           textInput.current.value = formatingNumner(range[0]);
           valueNumber = range[0];
-        }
-        if (!/^\d+$/.test(valueNumber)) {
+        } else if (!/^\d+$/.test(valueNumber)) {
           textInput.current.value = formatingNumner(value);
           valueNumber = value;
         }
