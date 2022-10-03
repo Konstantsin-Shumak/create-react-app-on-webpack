@@ -38,3 +38,10 @@
     padding: 1rem 3.2rem;
   }
 }
+@media screen and (max-width: $breakpoint_3) {
+  .button {
+    margin-top: 0.1rem;
+    padding: 0.8rem 3.1rem;
+    font-size: 22px;
+  }
+}

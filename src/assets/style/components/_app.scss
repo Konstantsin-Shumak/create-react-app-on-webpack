@@ -67,11 +67,15 @@ body {
     max-width: "320px";
   }
   .wrapper {
-    padding: 2.8rem 1.2rem;
+    padding: 3rem 1.3rem;
     .wrapper__title {
       font-size: 34px;
       width: 140px;
-      margin-bottom: 2rem;
+      margin-bottom: 1.9rem;
+    }
+    .wrapper__output-blocks {
+      flex-direction: column;
+      margin-top: 0rem;
     }
   }
 }

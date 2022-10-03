@@ -92,15 +92,22 @@
 
 @media screen and (max-width: $breakpoint_3) {
   .input-block {
+    margin-bottom: 1.6rem;
+    &:not(:first-child) {
+      margin-top: 0;
+    }
     .input-block__title {
-      margin-bottom: 1rem;
+      margin-bottom: 0.4rem;
+      font-size: 14px;
     }
     .input-block__input-content {
-      padding: 0.2rem 0.1rem 0.1rem 0.2rem;
-      font-size: 8px;
-      .input-block__input {
+      padding: 15px 0 9px 20px;
+      .input-content__input {
         .input-number {
-          font-size: 10px;
+          font-size: 22px;
+        }
+        .input__span-percent {
+          padding: 0.7rem 3.5rem 0.4rem 1.2rem;
         }
       }
     }
