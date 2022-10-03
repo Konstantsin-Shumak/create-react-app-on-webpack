@@ -29,9 +29,9 @@ const SimpleRange = styled(Slider)(() => ({
     {
       boxShadow: "0 0 0 0",
     },
-    "@media (pointer: coarse)":{
-      padding: "0"
-    }
+  "@media (pointer: coarse)": {
+    padding: "0",
+  },
 }));
 
 const RangeInput = ({ min, max, value, onChange, isLoading }) => {
@@ -40,7 +40,7 @@ const RangeInput = ({ min, max, value, onChange, isLoading }) => {
       value={value}
       max={max}
       min={min}
-      onChange={onChange}
+      onChange={(event) => onChange(event.target.value)}
       disabled={isLoading}
     />
   );

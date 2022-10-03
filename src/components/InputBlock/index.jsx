@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback } from "react";
 import RangeInput from "../RangeInput/index.jsx";
 import { formatingNumber } from "../../scripts/formatingNumber.js";
 import { reFormatingInputValue } from "../../scripts/reFormatingInputValue.js";
@@ -12,35 +12,29 @@ export const ImportBlock = ({
   onInputChange,
   isLoading,
 }) => {
-  const textInput = useRef(null);
-
-  const handleInputOnCHange = useCallback(
+  const handleValidate = useCallback(
     (event) => {
-      const value = reFormatingInputValue(event.target.value);
-      onInputChange(value);
+      let valueNumber = reFormatingInputValue(event.target.value);
+      if (valueNumber > range[1]) {
+        valueNumber = range[1];
+      } else if (valueNumber < range[0]) {
+        valueNumber = range[0];
+      }
+      onInputChange(valueNumber);
     },
-    [onInputChange]
+    [reFormatingInputValue, onInputChange, range]
   );
-
-  const handleInputValid = useCallback(
+  const handleOnChange = useCallback(
     (event) => {
-      if (event.key === "Enter" || event.type === "blur") {
-        let valueNumber = reFormatingInputValue(event.target.value);
-        if (valueNumber > range[1]) {
-          textInput.current.value = formatingNumber(range[1]);
-          valueNumber = range[1];
-        } else if (valueNumber < range[0]) {
-          textInput.current.value = formatingNumber(range[0]);
-          valueNumber = range[0];
-        } else if (!/^\d+$/.test(valueNumber)) {
-          textInput.current.value = formatingNumber(value);
-          valueNumber = value;
-        }
-        onInputChange(valueNumber);
+      const inputValue = reFormatingInputValue(event.target.value);
+      if (isNumber(inputValue)) {
+        onInputChange(reFormatingInputValue(inputValue));
       }
     },
-    [value, onInputChange, reFormatingInputValue, textInput, formatingNumber]
+    [reFormatingInputValue, onInputChange]
   );
+
+  const isNumber = (inputValue) => /^\d+$/.test(inputValue);
 
   return (
     <div className="input-block">
@@ -50,14 +44,14 @@ export const ImportBlock = ({
       >
         <div className="input-content__input">
           <input
-            ref={textInput}
             className="input-number"
             type="text"
-            defaultValue={formatingNumber(value)}
+            maxLength={10}
+            value={formatingNumber(value)}
             disabled={isLoading}
             readOnly={percent}
-            onBlur={handleInputValid}
-            onKeyDown={handleInputValid}
+            onBlur={handleValidate}
+            onChange={handleOnChange}
           />
           <span className={`input__span${percent && "-percent"}`}>
             {percent && percent}
@@ -67,7 +61,7 @@ export const ImportBlock = ({
         <RangeInput
           min={range[0]}
           max={range[1]}
-          onChange={handleInputOnCHange}
+          onChange={onInputChange}
           value={percent ? percent : value}
           isLoading={isLoading}
         />
