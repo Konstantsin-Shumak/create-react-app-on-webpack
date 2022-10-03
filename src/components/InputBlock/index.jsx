@@ -27,19 +27,19 @@ export const ImportBlock = ({
       if (event.key === "Enter" || event.type === "blur") {
         let valueNumber = reFormatingInputValue(event.target.value);
         if (valueNumber > range[1]) {
-          textInput.current.value = formatingNumner(range[1]);
+          textInput.current.value = formatingNumber(range[1]);
           valueNumber = range[1];
         } else if (valueNumber < range[0]) {
-          textInput.current.value = formatingNumner(range[0]);
+          textInput.current.value = formatingNumber(range[0]);
           valueNumber = range[0];
         } else if (!/^\d+$/.test(valueNumber)) {
-          textInput.current.value = formatingNumner(value);
+          textInput.current.value = formatingNumber(value);
           valueNumber = value;
         }
         onInputChange(valueNumber);
       }
     },
-    [value, onInputChange, reFormatingInputValue, textInput]
+    [value, onInputChange, reFormatingInputValue, textInput, formatingNumber]
   );
 
   return (
@@ -53,7 +53,7 @@ export const ImportBlock = ({
             ref={textInput}
             className="input-number"
             type="text"
-            defaultValue={formatingNumner(value)}
+            defaultValue={formatingNumber(value)}
             disabled={isLoading}
             readOnly={percent}
             onBlur={handleInputValid}
