@@ -1,13 +1,21 @@
 import React from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
-export const Button = ({ title, value, currency }) => {
+export const Button = ({ onClickButton, isLoading }) => {
   return (
-    <div className="output-block">
-      <p className="output-block__title">{title}</p>
-      <div className="output-block__result">
-        <h2>{value}</h2>
-        <span className="result__currency">{currency}</span>
-      </div>
+    <div className="button-conainer">
+      {isLoading}
+      <button
+        onClick={onClickButton}
+        disabled={isLoading}
+        className={`button ${isLoading ? "--disable" : ""}`}
+      >
+        {isLoading ? (
+          <CircularProgress sx={{ color: "#ffffff" }} />
+        ) : (
+          "Оставить заявку"
+        )}
+      </button>
     </div>
   );
 };

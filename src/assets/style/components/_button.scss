@@ -25,7 +25,9 @@
 .button:active {
   background-color: $color-button-pressed;
 }
+
 .button.--disable {
+  cursor: default;
   background-color: $color-button-disabled;
 }
 

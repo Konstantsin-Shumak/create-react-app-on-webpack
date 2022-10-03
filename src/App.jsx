@@ -1,4 +1,5 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
+import { Button } from "./components/Button/index.jsx";
 import { ImportBlock } from "./components/InputBlock/index.jsx";
 import { OutputBlock } from "./components/OutputBlock/index.jsx";
 
@@ -6,14 +7,16 @@ export const App = () => {
   const interestRate = 0.035;
   const currency = "₽";
 
-  const [autoPrice, setAutoPrice] = React.useState(3300000);
-  const [percent, setPercent] = React.useState(13);
-  const [months, setMonths] = React.useState(60);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [autoPrice, setAutoPrice] = useState(3300000);
+  const [percent, setPercent] = useState(13);
+  const [months, setMonths] = useState(60);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const getPercent = percent / 100;
-
-  const initialFree = () => getPercent * autoPrice;
+  const getPercent = useCallback(() => percent / 100, [percent]);
+  const initialFree = useCallback(
+    () => getPercent() * autoPrice,
+    [getPercent, autoPrice]
+  );
 
   const monthPay = useCallback(
     () =>
@@ -28,6 +31,20 @@ export const App = () => {
     [initialFree, months, monthPay]
   );
 
+  const sendInfo = () => {
+    const data = {
+      test: "tesing",
+    };
+    setIsLoading(true);
+    fetch("https://eoj3r7f3r4ef6v4.m.pipedream.net")
+      .then((response) => response.json())
+      .catch((err) => {
+        console.warn(err);
+        alert("Данные не прошли");
+      })
+      .finally(() => setIsLoading(false));
+  };
+
   return (
     <div className="wrapper">
       <h1 className="wrapper__title">
@@ -41,8 +58,7 @@ export const App = () => {
           title={"Стоимость автомобиля"}
           inputProperty={currency}
           value={autoPrice}
-          rangeMin={1000000}
-          rangeMax={6000000}
+          range={[1000000, 6000000]}
           onInputChange={setAutoPrice}
           isLoading={isLoading}
         />
@@ -50,9 +66,8 @@ export const App = () => {
           title={"Первоначальный взнос"}
           inputProperty={"%"}
           percent={percent}
-          value={initialFree().toFixed()}
-          rangeMin={10}
-          rangeMax={60}
+          value={initialFree()}
+          range={[10, 60]}
           onInputChange={setPercent}
           isLoading={isLoading}
         />
@@ -60,8 +75,7 @@ export const App = () => {
           title={"Срок лизинга"}
           inputProperty={"мес."}
           value={months}
-          rangeMin={1}
-          rangeMax={60}
+          range={[1, 60]}
           onInputChange={setMonths}
           isLoading={isLoading}
         />
@@ -70,17 +84,15 @@ export const App = () => {
       <div className="wrapper__output-blocks">
         <OutputBlock
           title={"Сумма договора лизинга"}
-          value={amountLease().toFixed()}
+          value={amountLease()}
           currency={currency}
         />
         <OutputBlock
           title={"Ежемесячный платех от"}
-          value={monthPay().toFixed()}
+          value={monthPay()}
           currency={currency}
         />
-        <div className="button-conainer">
-          <button className="button">Оставить заявку</button>
-        </div>
+        <Button onClickButton={sendInfo} isLoading={isLoading} />
       </div>
     </div>
   );

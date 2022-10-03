@@ -29,8 +29,16 @@ const SimpleRange = styled(Slider)(() => ({
     },
 }));
 
-const RangeInput = ({ min, max, value, onChange }) => {
-  return <SimpleRange value={value} max={max} min={min} onChange={onChange} />;
+const RangeInput = ({ min, max, value, onChange, isLoading }) => {
+  return (
+    <SimpleRange
+      value={value}
+      max={max}
+      min={min}
+      onChange={onChange}
+      disabled={isLoading}
+    />
+  );
 };
 
 export default RangeInput;
